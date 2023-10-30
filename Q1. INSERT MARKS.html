@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Student Marks Entry</title>
+    <style>
+        body {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            background-image: url(photo-1580582932707-520aed937b7b.avif);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            background-size: cover;
+
+            font-size: large;
+
+
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border: 3px solid #ccc;
+            border-radius: 10px;
+            background-image: url(cartoon-student-walking.gif);
+            background-repeat: no-repeat;
+            background-position: center -10px;
+            background-attachment: fixed;
+            background-color: #ffffe2;
+            transition: transform 0.5s;
+            /* Apply the animation to the 'transform' property */
+        }
+
+        .container:hover {
+            transform: translateY(10px);
+            /* Pull the container down 10 pixels on hover */
+        }
+
+
+
+        h1 {
+            text-align: center;
+        }
+
+        .form-group {
+            position: relative;
+            left: 100px;
+            width: 40%;
+            margin: 15px 0;
+
+
+        }
+
+        .result {
+            text-align: center;
+            margin: 20px 0;
+            font-weight: bold;
+
+        }
+
+        .eligible {
+            color: green;
+        }
+
+        .not-eligible {
+            color: red;
+        }
+
+        .btn-primary {
+            position: relative;
+            left: 160px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1 style="position: relative; top: -40px;">Student Marks Entry</h1>
+        <div class="form-group">
+            <label for="maths">Maths:</label>
+            <input style="width: 100%; position: absolute; left: 40%;" type="number" id="maths" min="0" max="100">
+        </div>
+        <div class="form-group">
+            <label for="chemistry">Chemistry:</label>
+            <input style="width: 100%; position: absolute; left: 40%;" type="number" id="chemistry" min="0" max="100">
+        </div>
+        <div class="form-group">
+            <label for="biology">Biology:</label>
+            <input style="width: 100%; position: absolute; left: 40%;" type="number" id="biology" min="0" max="100">
+        </div>
+        <div class="form-group">
+            <label for="physics">Physics:</label>
+            <input style="width: 100%; position: absolute; left: 40%;" type="number" id="physics" min="0" max="100">
+        </div>
+        <div class="result">
+            <p id="eligibility">Eligibility: <span id="eligibility-status"></span></p>
+        </div>
+        <button class="btn btn-primary" onclick="calculateEligibility()">Check Eligibility</button>
+        <button class="btn btn-primary" onclick="editMarks()">Edit</button>
+        <button class="btn btn-primary" onclick="deleteMarks()">Delete</button>
+    </div>
+
+    <script>
+        function calculateEligibility() {
+            const maths = (document.getElementById("maths").value);
+            const chemistry = (document.getElementById("chemistry").value);
+            const biology = (document.getElementById("biology").value);
+            const physics = (document.getElementById("physics").value);
+
+            const totalMarks = maths + chemistry + biology + physics;
+           eligiblemark = 180;
+
+
+
+            const eligibilityStatus = document.getElementById("eligibility-status");
+
+            if (maths >= 45 && chemistry >= 45 && biology >= 45 && physics >= 45) {
+                eligibilityStatus.textContent = "Eligible for Higher Studies";
+                eligibilityStatus.className = "eligible";
+            } else {
+                eligibilityStatus.textContent = "Not Eligible for Higher Studies";
+                eligibilityStatus.className = "not-eligible";
+            }
+        }
+
+        function editMarks() {
+            document.getElementById('eligibility-status').innerHTML = '';
+        }
+
+        function deleteMarks() {
+            document.getElementById("maths").value = "";
+            document.getElementById("chemistry").value = "";
+            document.getElementById("biology").value = "";
+            document.getElementById("physics").value = "";
+            document.getElementById("eligibility-status").textContent = "";
+        }
+    </script>
+</body>
+
+</html>
